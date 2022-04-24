@@ -1,4 +1,4 @@
-# Git Stats
+# Git Stats [![Python Versions](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/) [![GitHub](https://img.shields.io/github/license/saiyalamarty/gitstats.svg)](https://github.com/saiyalamarty/gitstats/blob/develop/LICENSE)
 
 Command line tool to get number of PRs reviewed by a user.
 
