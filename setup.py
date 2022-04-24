@@ -41,8 +41,8 @@ def get_version(rel_path: str) -> str:
 long_description = read("README.md")
 
 setup(
-    name="gitstats",
-    version=get_version("src/gitstats/__init__.py"),
+    name="github-stats",
+    version=get_version("src/github_stats/__init__.py"),
     description="Command line tool to get number of PRs reviewed by a user",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -70,7 +70,7 @@ setup(
     include_package_data=True,
     entry_points={
         "console_scripts": [
-            "gitstats=gitstats.app:main",
+            "gitstats=github_stats.app:main",
         ],
     },
 )

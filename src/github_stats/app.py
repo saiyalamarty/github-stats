@@ -10,7 +10,7 @@ from rich import box
 from rich.console import Console
 from rich.table import Table
 
-from gitstats import rich_utils
+from github_stats import rich_utils
 
 console = Console()
 
