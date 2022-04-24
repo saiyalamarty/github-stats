@@ -15,7 +15,7 @@ def read(rel_path: str) -> str:
     """
 
     here = os.path.abspath(os.path.dirname(__file__))
-    with open(os.path.join(here, rel_path), 'r', encoding='utf-8') as fp:
+    with open(os.path.join(here, rel_path), "r", encoding="utf-8") as fp:
         return fp.read()
 
 
@@ -58,7 +58,8 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
     ],
-    packages=find_packages(),
+    package_dir={"": "src"},
+    packages=find_packages(where="src"),
     install_requires=[
         "click",
         "pandas",
@@ -69,7 +70,7 @@ setup(
     include_package_data=True,
     entry_points={
         "console_scripts": [
-            "gitstats=src.gitstats.app:main",
+            "gitstats=gitstats.app:main",
         ],
     },
 )

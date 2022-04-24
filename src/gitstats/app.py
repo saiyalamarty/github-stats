@@ -1,6 +1,4 @@
 import datetime
-import sys
-from os.path import dirname
 from typing import List
 
 import click
@@ -12,10 +10,7 @@ from rich import box
 from rich.console import Console
 from rich.table import Table
 
-parent = dirname(dirname(__file__))
-sys.path.insert(0, parent)
-
-from src.gitstats import rich_utils  # noqa: E402
+from gitstats import rich_utils
 
 console = Console()
 
