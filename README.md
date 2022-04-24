@@ -32,11 +32,16 @@ When the script is run, it will print the number of PRs reviewed by the user in 
 
 ```
 $ gitstats
-PRs reviewed this week: 2
+Repos ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2/2 • 0:00:06 0:00:00
+
+
 ╭───┬────────────┬─────────────────────────────────────────────────────────────────────┬───────╮
 │   │ Repo       │ PR Title                                                            │ PR ID │
 ├───┼────────────┼─────────────────────────────────────────────────────────────────────┼───────┤
 │ 0 │ git_repo_1 │ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiu │ 101   │
 │ 1 │ git_repo_2 │ Lorem ipsum dolor sit amet, consectetur adipiscing elit,            │ 100   │
 ╰───┴────────────┴─────────────────────────────────────────────────────────────────────┴───────╯
+                                   PRs reviewed this week: 2
+
+
 ```
