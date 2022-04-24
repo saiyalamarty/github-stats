@@ -42,18 +42,20 @@ long_description = read("README.md")
 
 setup(
     name="github-stats",
+    url="https://github.com/saiyalamarty/github-stats",
     version=get_version("src/github_stats/__init__.py"),
     description="Command line tool to get number of PRs reviewed by a user",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Sai Yalamarty",
+    author_email="sai1494@gmail.com",
     license="MIT",
     classifiers=[
-        "Private :: Do Not Upload",
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent" "Topic :: Software Development :: Version Control :: Git",
+        "Operating System :: OS Independent",
+        "Topic :: Software Development :: Version Control :: Git",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
