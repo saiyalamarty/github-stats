@@ -1,11 +1,11 @@
-from typing import Optional
+from typing import Optional, Tuple
 
 import pandas as pd
 from rich.progress import BarColumn, Progress, TaskID, TextColumn, TimeElapsedColumn, TimeRemainingColumn
 from rich.table import Table
 
 
-def get_rich_progress_and_run_id(tasks: list) -> (Progress, TaskID):
+def get_rich_progress_and_run_id(tasks: list) -> Tuple[Progress, TaskID]:
     progress = Progress(
         "{task.description}",
         BarColumn(),
