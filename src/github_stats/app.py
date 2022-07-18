@@ -135,15 +135,6 @@ def main(token: str, username: str, org: str, repos: str, start_timestamp: int, 
 
     """
 
-    # Input validation
-    assert token.startswith("ghp_"), "Github token must start with 'ghp_'"
-    assert username, "Github username is empty"
-    assert org, "Github org is empty"
-    assert repos, "Github repos is empty"
-    assert isinstance(int(start_timestamp), int), "Invalid Start Timestamp"
-    assert isinstance(int(end_timestamp), int), "Invalid End Timestamp"
-    assert int(start_timestamp) < int(end_timestamp), "Start Timestamp must be less than End Timestamp"
-
     gs = GitStats(
         token=token,
         user_name=username,
