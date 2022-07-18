@@ -3,6 +3,7 @@ from typing import List
 
 import click
 import pandas as pd
+from dotenv import load_dotenv
 from github import Github
 from github.PullRequest import PullRequest
 from github.Repository import Repository
@@ -12,11 +13,14 @@ from rich.table import Table
 
 from github_stats import rich_utils
 
+load_dotenv()
 console = Console()
 
 
 class GitStats:
-    def __init__(self, token: str, user_name: str, org_name: str, repo_names: str) -> None:
+    def __init__(
+        self, token: str, user_name: str, org_name: str, repo_names: str, start_timestamp: int, end_timestamp: int
+    ) -> None:
         """
         Initializes the class
 
@@ -28,6 +32,8 @@ class GitStats:
         self.user = self.g.get_user(user_name)
         self.org_name = org_name
         self.repo_names = repo_names.replace(" ", "").split(",")
+        self.start_date = datetime.datetime.fromtimestamp(int(start_timestamp))
+        self.end_date = datetime.datetime.fromtimestamp(int(end_timestamp))
 
     def run(self):
         """
@@ -95,7 +101,7 @@ class GitStats:
 
     def _get_valid_pulls(self, repo: Repository) -> List[PullRequest]:
         """
-        Returns a list of all PRs in a repo from the last two weeks that are not created by the user
+        Returns a list of all PRs in a repo between the start and end time that are not created by the user
 
         Args:
             repo: Repository object
@@ -105,14 +111,13 @@ class GitStats:
         """
         pulls = repo.get_pulls(state="all", sort="created", direction="desc")
 
-        valid_pulls = [
-            pull
-            for pull in pulls
-            if (
-                pull.created_at >= datetime.datetime.now() - datetime.timedelta(days=14)
-                and self.user not in pull.assignees
-            )
-        ]
+        valid_pulls = []
+        for pull in pulls:
+            if pull.created_at < self.start_date:
+                break
+
+            if self.user not in pull.assignees and pull.created_at < self.end_date:
+                valid_pulls.append(pull)
 
         return valid_pulls
 
@@ -122,11 +127,20 @@ class GitStats:
 @click.option("-u", "--username", prompt="Github username", help="Github username", envvar="GITHUB_USERNAME")
 @click.option("-o", "--org", prompt="Github org", help="Github org", envvar="GITHUB_ORGANIZATION")
 @click.option("-r", "--repos", prompt="Github repos", help="',' separated github repos", envvar="GITHUB_REPOS")
-def main(token: str, username: str, org: str, repos: str):
+@click.option("-s", "--start_timestamp", prompt="Start Timestamp", help="Start time in epoch format")
+@click.option("-e", "--end_timestamp", prompt="End Timestamp", help="End time in epoch format")
+def main(token: str, username: str, org: str, repos: str, start_timestamp: int, end_timestamp: int):
     """
     This script will print the number of PRs reviewed by the user in the last two weeks.
 
     """
 
-    gs = GitStats(token=token, user_name=username, org_name=org, repo_names=repos)
+    gs = GitStats(
+        token=token,
+        user_name=username,
+        org_name=org,
+        repo_names=repos,
+        start_timestamp=start_timestamp,
+        end_timestamp=end_timestamp,
+    )
     gs.run()
