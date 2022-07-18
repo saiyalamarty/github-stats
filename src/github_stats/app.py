@@ -71,7 +71,7 @@ class GitStats:
 
         # Update the style of the table
         table.box = box.ROUNDED
-        table.caption = f"PRs reviewed this week: {len(stats)}"
+        table.caption = f"PRs reviewed between {self.start_date.date()} and {self.end_date.date()}: {len(stats)}"
         table.caption_style = "bold italic"
 
         console.print("\n", table, "\n")
@@ -131,7 +131,7 @@ class GitStats:
 @click.option("-e", "--end_timestamp", prompt="End Timestamp", help="End time in epoch format")
 def main(token: str, username: str, org: str, repos: str, start_timestamp: int, end_timestamp: int):
     """
-    This script will print the number of PRs reviewed by the user in the last two weeks.
+    This script will print the number of PRs reviewed by the user in the given timeframe.
 
     """
 

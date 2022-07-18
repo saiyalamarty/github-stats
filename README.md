@@ -8,18 +8,20 @@ Use `--help` to see all options.
 $ gitstats --help
 Usage: gitstats [OPTIONS]
 
-  This script will print the number of PRs reviewed by the user in the last
-  two weeks.
+  This script will print the number of PRs reviewed by the user in the given
+  timeframe.
 
 Options:
-  -t, --token TEXT     Github token
-  -u, --username TEXT  Github username
-  -o, --org TEXT       Github org
-  -r, --repos TEXT     ',' separated github repos
-  --help               Show this message and exit.
+  -t, --token TEXT            Github token
+  -u, --username TEXT         Github username
+  -o, --org TEXT              Github org
+  -r, --repos TEXT            ',' separated github repos
+  -s, --start_timestamp TEXT  Start time in epoch format
+  -e, --end_timestamp TEXT    End time in epoch format
+  --help                      Show this message and exit.
 ```
 
-The script can by default attempts to read the options from the environment variables. Set the following environment variables:
+The script by default attempts to read the options from the environment variables. Set the following environment variables:
 
 * `GITHUB_TOKEN` - GitHub token
 * `GITHUB_USERNAME` - GitHub username
@@ -42,7 +44,7 @@ Repos ━━━━━━━━━━━━━━━━━━━━━━━━�
 │ 1 │ gitrepo_2 │ Lorem ipsum dolor sit amet, consectetur adipiscing elit,            │ 100   │
 ╰───┴───────────┴─────────────────────────────────────────────────────────────────────┴───────╯
 
-                                   PRs reviewed this week: 2
+                       PRs reviewed between 2022-07-04 and 2022-07-18: 2
 
 
 ```
